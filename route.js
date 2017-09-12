@@ -1,6 +1,6 @@
 const router = new require('express').Router();
 const Usuario = require('./controller/Usuario');
 
-router.post('/usuario/autenticar', Usuario.autenticar);
+router.post('/usuario/autenticar/facebook', Usuario.autenticarFacebok);
 
 module.exports = router;

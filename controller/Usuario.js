@@ -2,24 +2,22 @@ const Usuario = require('../model/Usuario');
 
 const Controller = {
 
-    autenticar: (req, res) => {
-        console.log('req', req.body);
-
-        let query = { 'facebook_id': req.body.facebook_id };
-        let update = {
-            nome: req.body.nome,
-            sobrenome: req.body.sobrenome,
-            email: req.body.email,
-            imagem: req.body.imagem,
-            facebook_id: req.body.facebook_id
+    autenticarFacebook: (req, res) => {
+        let query = {
+            facebook_id: req.body.facebook_id,
+            email: req.body.email
         };
+        let update = {};
+        update.nome = req.body.nome;
+        update.email = req.body.email;
+        update.facebook_id = req.body.facebook_id;
+        if (req.body.sobrenome) update.sobrenome = req.body.sobrenome;
+        if (req.body.imagem) update.imagem = req.body.imagem;
         let options = { upsert: true, new: true, setDefaultsOnInsert: true };
-
         Usuario.findOneAndUpdate(query, update, options, (err, usuario) => {
             if (err) return console.error(err);
             console.log('usuario', usuario);
         });
-
         // res.send(req.body);
     }
 

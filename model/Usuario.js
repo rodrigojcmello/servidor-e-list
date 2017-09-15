@@ -8,9 +8,15 @@ const usuarioSchema = new mongoose.Schema({
     device_key: {
         type: String
     },
-    nome: {
+    nome_completo: {
         type: String,
         required: true
+    },
+    primeiro_nome: {
+        type: String
+    },
+    nome_meio: {
+        type: String
     },
     sobrenome: {
         type: String
